@@ -25,7 +25,9 @@ def executa_gravador_streamin(LIMITAR_TARDES_DOMINGO=True):
     agora = datetime.datetime.now()
     hora_formatada = agora.strftime('%d_%m_%Y_%H_hs_%M_min_%S_seg')
 
-    arquivo_mp3 = os.path.join(os.path.dirname(__file__), '/streams/Streamripper_rips/incomplete/89FM_{}.mp3'.format(hora_formatada))
+    diretorio_projeto = os.path.dirname(__file__)
+    arquivo_mp3 = '{}/streams/Streamripper_rips/incomplete/89FM_{}.mp3'\
+                    .format(diretorio_projeto, hora_formatada)
 
     comando_curl = 'curl -sS -o {} –max-time 1800 {}'.format(arquivo_mp3, URL_REQUEST_89FM)
     comando_streamripper = 'streamripper {} -d ./streams -l 10800 -a {}'.format(URL_REQUEST_89FM, arquivo_mp3)
@@ -34,8 +36,7 @@ def executa_gravador_streamin(LIMITAR_TARDES_DOMINGO=True):
         hoje = datetime.datetime.today().isoweekday()  # "Return day of the week, where Monday == 1 ... Sunday == 7."
         if hoje == 7:
             try:
-                RELATORIO = os.path.join(os.path.dirname(__file__),
-                                         '/streams/Streamripper_rips/incomplete/RELATORIO_{}.txt'.format(hora_formatada))
+                RELATORIO = '{}/streams/Streamripper_rips/incomplete/RELATORIO_{}.txt'.format(diretorio_projeto, hora_formatada)
                 os.system(comando_streamripper + ' >> {}'.format(RELATORIO))
             except:
                 os.system('sudo apt-get install streamripper')
