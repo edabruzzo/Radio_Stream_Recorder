@@ -1,0 +1,4 @@
+# sudo apt-get install portaudio19-dev python-pyaudio python3-pyaudio
+# https://stackoverflow.com/questions/48690984/portaudio-h-no-such-file-or-directory
+pyaudio
+requests
