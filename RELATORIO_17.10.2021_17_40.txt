@@ -1,0 +1,17 @@
+/home/emmanuel/SINAPSES/playback_recorder/venv/bin/python /home/emmanuel/SINAPSES/playback_recorder/record_internet_radio_streaming.py
+Connecting...
+stream: Streamripper_rips
+server name: MediaGateway 5.6.1-0390.el6
+declared bitrate: 128
+meta interval: 16000
+
+[skipping...   ]  -  [    1kb]
+[ripping...    ] 89 FM - SÃ£o Paulo [  564kb]
+[ripping...    ] NO DOUBT - DON'T SPEAK [  3,86M]
+[ripping...    ] SANTANA/STEVEN TYLER - JUST FEEL BETTER [  3,72M]
+[ripping...    ] PLANET HEMP - CONTEXTO [  3,28M]
+[ripping...    ] U 2 - STILL HAVEN'T FOUND WHAT I'M LOOKING FOR [  4,03M]
+[ripping...    ] KINGS OF LEON - FAMILY TREE [  3,54M]
+[ripping...    ] LED ZEPPELIN - ROCK AND ROLL [  3,34M]
+[ripping...    ] THE ROLLING STONES - DON'T STOP [  3,60M]
+[ripping...    ] RUMBORA - O MAPA DA MINA [  3,10M]
