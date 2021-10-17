@@ -12,6 +12,9 @@ If you want to, you can schedule a job on crontab
 
  So according to this spec 0 14 * * 0  would run 14:00 every Sunday.
 
+![Screenshot from 2021-10-17 18-06-03](https://user-images.githubusercontent.com/18289389/137645043-8813a42c-e7e1-4dda-83e2-500a00d44385.png)
+
+
 
 Connecting...
 stream: Streamripper_rips
@@ -29,6 +32,3 @@ meta interval: 16000
 [ripping...    ] LED ZEPPELIN - ROCK AND ROLL [  3,34M]
 [ripping...    ] THE ROLLING STONES - DON'T STOP [  3,60M]
 [ripping...    ] RUMBORA - O MAPA DA MINA [  3,10M]
-
-
-![Screenshot from 2021-10-17 18-06-03](https://user-images.githubusercontent.com/18289389/137645043-8813a42c-e7e1-4dda-83e2-500a00d44385.png)
