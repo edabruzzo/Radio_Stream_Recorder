@@ -28,7 +28,7 @@ def executa_gravador_streamin(URL_REQUEST):
                     .format(diretorio_projeto, hora_formatada)
 
     comando_curl = 'curl -sS -o {} –max-time 1800 {}'.format(arquivo_mp3, URL_REQUEST)
-    comando_streamripper = 'streamripper {} -d ./streams -l 10800 -a {}'.format(URL_REQUEST, arquivo_mp3)
+    comando_streamripper = 'streamripper {} -d {}/streams -l 10800 -a {}'.format(URL_REQUEST, diretorio_projeto, arquivo_mp3)
 
     try:
         RELATORIO = '{}/streams/Streamripper_rips/incomplete/RELATORIO_{}.txt'.format(diretorio_projeto, hora_formatada)
