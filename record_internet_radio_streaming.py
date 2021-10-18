@@ -80,10 +80,10 @@ if __name__ == "__main__":
 
     LIMITAR_A_TARDES_DOMINGO, HORARIO_LIVRE = argumentos_linha_comando()
 
-
     if HORARIO_LIVRE:
         print('Aguardando interrupção manual do programa')
         executa_gravador_streamin()
+
 
     else:
 
@@ -91,5 +91,7 @@ if __name__ == "__main__":
 
             dentro_do_horario_limite = esta_dentro_do_horario_limite(time(14, 00), time(20, 35))
 
-            if not dentro_do_horario_limite:
+            if dentro_do_horario_limite:
+                executa_gravador_streamin()
+            else:
                 exit()
