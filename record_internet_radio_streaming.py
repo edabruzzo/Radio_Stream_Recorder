@@ -41,6 +41,11 @@ def executa_gravador_streamin(LIMITAR_TARDES_DOMINGO=True):
             except:
                 os.system('sudo apt-get install streamripper')
 
+            finally:
+                diretorio_streams_completos = os.path.join(diretorio_projeto, 'streams/Streamripper_rips')
+                diretorio_musicas_baixadas = os.path.join(diretorio_projeto, 'musicas_baixadas')
+                os.system('mv {}/*.acc {}'.format(diretorio_streams_completos, diretorio_musicas_baixadas))
+                os.system('mv {}/RELATORIO_* {}'.format(diretorio_streams_completos, diretorio_musicas_baixadas))
 
 def esta_dentro_do_horario_limite(begin_time, end_time, check_time=None):
     check_time = check_time or datetime.now().time()
