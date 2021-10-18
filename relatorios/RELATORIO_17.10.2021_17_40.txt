@@ -1,0 +1,40 @@
+/home/emmanuel/SINAPSES/playback_recorder/venv/bin/python /home/emmanuel/SINAPSES/playback_recorder/record_internet_radio_streaming.py
+Connecting...
+stream: Streamripper_rips
+server name: MediaGateway 5.6.1-0390.el6
+declared bitrate: 128
+meta interval: 16000
+
+
+[ripping...    ] THE KILLERS - CAUTION [  3,16M]
+[ripping...    ] MIDNIGHT OIL - BEDS ARE BURNING [  3,91M]
+[ripping...    ] . - . [  142kb]
+[ripping...    ] CIDADE NEGRA - FIRMAMENTO [  3,28M]
+[ripping...    ] CHUMBAWAMBA - TUBTHUMPING [  3,05M]
+[ripping...    ] THE DOORS - BREAK ON THROUGH [  2,26M]
+[ripping...    ] EAGLE-EYE CHERRY - SAVE TONIGHT [  3,30M]
+[ripping...    ] TWENTY ONE PILOTS - SATURDAY [  2,61M]
+[ripping...    ] OS PARALAMAS DO SUCESSO - UNS DIAS [  3,63M]
+[ripping...    ] . - . [  110kb]
+[ripping...    ] AVRIL LAVIGNE - COMPLICATED [  3,68M]
+[ripping...    ] RAMONES - I BELIEVE IN MIRACLES [  2,99M]
+[ripping...    ] JOTA QUEST - DE VOLTA AO PLANETA [  3,74M]
+[ripping...    ] . - . [  126kb]
+[ripping...    ] COLDPLAY - HIGHER POWER [  3,11M]
+[ripping...    ] GUNS N' ROSES - YESTERDAYS [  2,90M]
+[ripping...    ] STEPPENWOLF - BORN TO BE WILD [  3,25M]
+[ripping...    ] SILVERCHAIR - MISS YOU LOVE [  3,66M]
+[ripping...    ] TITAS - ISSO [  2,35M]
+[ripping...    ] . - . [  110kb]
+[ripping...    ] FOO FIGHTERS - GENERATOR [  3,39M]
+[ripping...    ] NICKELBACK - TOO BAD [  3,37M]
+[ripping...    ] SKANK - JACKIE TEQUILA [  3,68M]
+[ripping...    ] A-HA - TAKE ON ME [  3,27M]
+[ripping...    ] IMAGINE DRAGONS - RADIOACTIVE [  2,84M]
+[ripping...    ] CYNDI LAUPER - GIRLS JUST WANT TO HAVE FUN [  3,42M]
+[skipping...   ] . - . [  392kb]
+
+shutting down
+bye..
+
+Process finished with exit code 0
