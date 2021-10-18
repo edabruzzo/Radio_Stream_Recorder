@@ -18,7 +18,7 @@ import datetime
 from datetime import time
 import os.path
 
-def executa_gravador_streamin(LIMITAR_TARDES_DOMINGO=True):
+def executa_gravador_streamin(LIMITAR_TARDES_DOMINGO=False):
 
     URL_REQUEST_89FM = 'https://21933.live.streamtheworld.com/RADIO_89FM_ADP.aac?dist=site-89fm'
 
