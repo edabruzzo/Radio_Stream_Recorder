@@ -3,16 +3,22 @@
 
     vim /home/$USER/.bashrc
 
-    DIRETORIO_STREAM_RECORDER=/home/$USER/playback_recorder
+    DIRETORIO_STREAM_RECORDER=/home/$USER/SINAPSES/playback_recorder
 
-    alias gravar89FM = "$DIRETORIO_STREAM_RECORDER/venv/bin/python $DIRETORIO_STREAM_RECORDER/record_internet_radio_streaming.py --horario_livre=True"
+    alias gravar89FM="$DIRETORIO_STREAM_RECORDER/venv/bin/python $DIRETORIO_STREAM_RECORDER/record_internet_radio_streaming.py --horario_livre=True"
+
+    alias converterAacToMp3_Todas="for f in *.aac; do ffmpeg -i "$f" -acodec libmp3lame -ab 256k "$f.mp3"; done"
+
 
     :x
 
     Após basta chamar da linha de comando:
 
     usuario@computer:~$  gravar89FM
-
+    
+    Caso queira converter todas as músicas em *.aac para *.mp3 em um diretório:
+    
+    usuario@computer:~$  converterAacToMp3_Todas
 
 # Radio_Stream_Recorder
 
