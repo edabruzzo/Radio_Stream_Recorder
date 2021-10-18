@@ -48,7 +48,7 @@ def executa_gravador_streamin(LIMITAR_TARDES_DOMINGO=True):
                 os.system('mv {}/RELATORIO_* {}'.format(diretorio_streams_completos, diretorio_musicas_baixadas))
 
 def esta_dentro_do_horario_limite(begin_time, end_time, check_time=None):
-    check_time = check_time or datetime.now().time()
+    check_time = check_time or datetime.datetime.now().time()
     return check_time >= begin_time or check_time <= end_time
 
 
