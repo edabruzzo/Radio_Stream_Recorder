@@ -18,9 +18,7 @@ import datetime
 from datetime import time
 import os.path
 
-def executa_gravador_streamin():
-
-    URL_REQUEST_89FM = 'https://21933.live.streamtheworld.com/RADIO_89FM_ADP.aac?dist=site-89fm'
+def executa_gravador_streamin(URL_REQUEST):
 
     agora = datetime.datetime.now()
     hora_formatada = agora.strftime('%d_%m_%Y_%H_hs_%M_min_%S_seg')
@@ -29,8 +27,8 @@ def executa_gravador_streamin():
     arquivo_mp3 = '{}/streams/Streamripper_rips/incomplete/89FM_{}.mp3'\
                     .format(diretorio_projeto, hora_formatada)
 
-    comando_curl = 'curl -sS -o {} –max-time 1800 {}'.format(arquivo_mp3, URL_REQUEST_89FM)
-    comando_streamripper = 'streamripper {} -d ./streams -l 10800 -a {}'.format(URL_REQUEST_89FM, arquivo_mp3)
+    comando_curl = 'curl -sS -o {} –max-time 1800 {}'.format(arquivo_mp3, URL_REQUEST)
+    comando_streamripper = 'streamripper {} -d ./streams -l 10800 -a {}'.format(URL_REQUEST, arquivo_mp3)
 
     try:
         RELATORIO = '{}/streams/Streamripper_rips/incomplete/RELATORIO_{}.txt'.format(diretorio_projeto, hora_formatada)
@@ -80,19 +78,23 @@ if __name__ == "__main__":
 
     LIMITAR_A_TARDES_DOMINGO, HORARIO_LIVRE = argumentos_linha_comando()
 
-    hoje = datetime.datetime.today().isoweekday()  # "Return day of the week, where Monday == 1 ... Sunday == 7."
+    URL_REQUEST_89FM = 'https://21933.live.streamtheworld.com/RADIO_89FM_ADP.aac?dist=site-89fm'
+
+
+    # "Return day of the week, where Monday == 1 ... Sunday == 7."
+    hoje = datetime.datetime.today().isoweekday()
     if hoje != 7 and LIMITAR_A_TARDES_DOMINGO:
         exit()
     else:
         if HORARIO_LIVRE:
             print('Aguardando interrupção manual do programa')
-            executa_gravador_streamin()
+            executa_gravador_streamin(URL_REQUEST_89FM)
         else:
             while True:
                 dentro_do_horario_limite = esta_dentro_do_horario_limite(begin_time=time(14, 00), end_time=time(20, 00))
 
                 if dentro_do_horario_limite:
-                    executa_gravador_streamin()
+                    executa_gravador_streamin(URL_REQUEST_89FM)
                 else:
                     print('Fora do horário permitido para gravação de streaming')
                     exit()
