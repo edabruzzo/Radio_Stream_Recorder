@@ -18,7 +18,7 @@ import datetime
 from datetime import time
 import os.path
 
-def executa_gravador_streamin(LIMITAR_TARDES_DOMINGO=False):
+def executa_gravador_streamin():
 
     URL_REQUEST_89FM = 'https://21933.live.streamtheworld.com/RADIO_89FM_ADP.aac?dist=site-89fm'
 
@@ -32,20 +32,20 @@ def executa_gravador_streamin(LIMITAR_TARDES_DOMINGO=False):
     comando_curl = 'curl -sS -o {} –max-time 1800 {}'.format(arquivo_mp3, URL_REQUEST_89FM)
     comando_streamripper = 'streamripper {} -d ./streams -l 10800 -a {}'.format(URL_REQUEST_89FM, arquivo_mp3)
 
-    if LIMITAR_TARDES_DOMINGO:
-        hoje = datetime.datetime.today().isoweekday()  # "Return day of the week, where Monday == 1 ... Sunday == 7."
-        if hoje == 7:
-            try:
-                RELATORIO = '{}/streams/Streamripper_rips/incomplete/RELATORIO_{}.txt'.format(diretorio_projeto, hora_formatada)
-                os.system(comando_streamripper + ' >> {}'.format(RELATORIO))
-            except:
-                os.system('sudo apt-get install streamripper')
+    try:
+        RELATORIO = '{}/streams/Streamripper_rips/incomplete/RELATORIO_{}.txt'.format(diretorio_projeto, hora_formatada)
+        os.system(comando_streamripper + ' >> {}'.format(RELATORIO))
 
-            finally:
-                diretorio_streams_completos = os.path.join(diretorio_projeto, 'streams/Streamripper_rips')
-                diretorio_musicas_baixadas = os.path.join(diretorio_projeto, 'musicas_baixadas')
-                os.system('mv {}/*.acc {}'.format(diretorio_streams_completos, diretorio_musicas_baixadas))
-                os.system('mv {}/RELATORIO_* {}'.format(diretorio_streams_completos, diretorio_musicas_baixadas))
+    except Exception as erro:
+        print(erro)
+        os.system('sudo apt-get install streamripper')
+
+    finally:
+        diretorio_streams_completos = os.path.join(diretorio_projeto, 'streams/Streamripper_rips')
+        diretorio_musicas_baixadas = os.path.join(diretorio_projeto, 'musicas_baixadas')
+        os.system('mv {}/*.acc {}'.format(diretorio_streams_completos, diretorio_musicas_baixadas))
+        os.system('mv {}/RELATORIO_* {}'.format(diretorio_streams_completos, diretorio_musicas_baixadas))
+
 
 def esta_dentro_do_horario_limite(begin_time, end_time, check_time=None):
     check_time = check_time or datetime.datetime.now().time()
@@ -80,17 +80,21 @@ if __name__ == "__main__":
 
     LIMITAR_A_TARDES_DOMINGO, HORARIO_LIVRE = argumentos_linha_comando()
 
-    if HORARIO_LIVRE:
-        print('Aguardando interrupção manual do programa')
-        executa_gravador_streamin()
+    hoje = datetime.datetime.today().isoweekday()  # "Return day of the week, where Monday == 1 ... Sunday == 7."
+    if hoje != 7 and LIMITAR_A_TARDES_DOMINGO:
+        exit()
     else:
-        while True:
-            dentro_do_horario_limite = esta_dentro_do_horario_limite(begin_time=time(14, 00), end_time=time(20, 00))
+        if HORARIO_LIVRE:
+            print('Aguardando interrupção manual do programa')
+            executa_gravador_streamin()
+        else:
+            while True:
+                dentro_do_horario_limite = esta_dentro_do_horario_limite(begin_time=time(14, 00), end_time=time(20, 00))
 
-            if dentro_do_horario_limite:
-                executa_gravador_streamin()
-            else:
-                print('Fora do horário permitido para gravação de streaming')
-                exit()
+                if dentro_do_horario_limite:
+                    executa_gravador_streamin()
+                else:
+                    print('Fora do horário permitido para gravação de streaming')
+                    exit()
 
 
