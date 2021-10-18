@@ -49,7 +49,7 @@ def executa_gravador_streamin(LIMITAR_TARDES_DOMINGO=True):
 
 def esta_dentro_do_horario_limite(begin_time, end_time, check_time=None):
     check_time = check_time or datetime.datetime.now().time()
-    return check_time >= begin_time or check_time <= end_time
+    return check_time >= begin_time and check_time <= end_time
 
 
 def argumentos_linha_comando():
@@ -85,7 +85,7 @@ if __name__ == "__main__":
         executa_gravador_streamin()
     else:
         while True:
-            dentro_do_horario_limite = esta_dentro_do_horario_limite(time(14, 00), time(20, 35))
+            dentro_do_horario_limite = esta_dentro_do_horario_limite(begin_time=time(14, 00), end_time=time(20, 00))
 
             if dentro_do_horario_limite:
                 executa_gravador_streamin()
