@@ -1,4 +1,21 @@
+
+# Configurando um alias no ~/.bashrc
+
+vim /home/$USER/.bashrc
+
+DIRETORIO_STREAM_RECORDER=/home/$USER/playback_recorder
+alias gravar89FM = "$DIRETORIO_STREAM_RECORDER/venv/bin/python $DIRETORIO_STREAM_RECORDER/record_internet_radio_streaming.py --horario_livre=True"
+
+:x
+
+Após basta chamar da linha de comando:
+
+usuario@computer:~$  gravar89FM
+
+
 # Radio_Stream_Recorder
+
+Se preferir, basta configurar um job no crontab
 
 If you want to, you can schedule a job on crontab
 
