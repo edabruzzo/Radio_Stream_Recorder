@@ -90,6 +90,7 @@ if __name__ == "__main__":
             if dentro_do_horario_limite:
                 executa_gravador_streamin()
             else:
+                print('Fora do horário permitido para gravação de streaming')
                 exit()
 
 
