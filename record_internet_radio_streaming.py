@@ -83,15 +83,13 @@ if __name__ == "__main__":
     if HORARIO_LIVRE:
         print('Aguardando interrupção manual do programa')
         executa_gravador_streamin()
-
-
     else:
-
         while True:
-
             dentro_do_horario_limite = esta_dentro_do_horario_limite(time(14, 00), time(20, 35))
 
             if dentro_do_horario_limite:
                 executa_gravador_streamin()
             else:
                 exit()
+
+
