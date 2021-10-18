@@ -39,20 +39,21 @@ def executa_gravador_streamin(URL_REQUEST):
         os.system('sudo apt-get install streamripper')
 
     finally:
-        os.system()
+
         diretorio_streams_completos = os.path.join(diretorio_projeto, 'streams/Streamripper_rips')
         diretorio_musicas_baixadas = os.path.join(diretorio_projeto, 'musicas_baixadas')
         diretorio_relatorios = os.path.join(diretorio_projeto, 'relatorios')
-
+        diretorio_streams_incompletos = os.path.join(diretorio_streams_completos, 'incomplete')
         try:
 
             comando_ffmpeg = 'for f in *.aac; do ffmpeg -i "$f" -acodec libmp3lame -ab 256k "$f.mp3"; done'
             os.system('cd {} && {}'.format(diretorio_streams_completos, comando_ffmpeg))
             os.system('cd {} && rm *.aac && rm *.cue'.format(diretorio_streams_completos))
+            os.system('cd {} && rm *.aac && rm *.cue'.format(diretorio_streams_incompletos))
             os.system('mv {}/*.mp3 {}'.format(diretorio_streams_completos, diretorio_musicas_baixadas))
             
             arquivos_estranhos = [arquivo for arquivo in os.listdir(diretorio_musicas_baixadas) 
-                                  if (' -  (' in arquivo and  ').mp3' in arquivo) or ('') ]
+                                  if (' -  (' in arquivo and  ').mp3' in arquivo) ]
 
             for arquivo_estranho in arquivos_estranhos:
                 os.remove(os.path.join(diretorio_musicas_baixadas, arquivo_estranho))
@@ -60,7 +61,7 @@ def executa_gravador_streamin(URL_REQUEST):
         except Exception as erro:
             print(erro)
 
-        os.system('mv {}/RELATORIO_* {}'.format(diretorio_streams_completos, diretorio_relatorios))
+        os.system('mv {}/RELATORIO_* {}'.format(diretorio_streams_incompletos, diretorio_relatorios))
 
 
 def esta_dentro_do_horario_limite(begin_time, end_time, check_time=None):
