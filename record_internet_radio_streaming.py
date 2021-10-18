@@ -24,7 +24,7 @@ def executa_gravador_streamin(URL_REQUEST):
     hora_formatada = agora.strftime('%d_%m_%Y_%H_hs_%M_min_%S_seg')
 
     diretorio_projeto = os.path.dirname(__file__)
-    arquivo_mp3 = '{}/streams/Streamripper_rips/incomplete/89FM_{}.mp3'\
+    arquivo_mp3 = '{}/streams/Streamripper_rips/incomplete/PROGRAMACAO_LOCUTOR_COMERCIAIS_{}.mp3'\
                     .format(diretorio_projeto, hora_formatada)
 
     comando_curl = 'curl -sS -o {} –max-time 1800 {}'.format(arquivo_mp3, URL_REQUEST)
@@ -53,7 +53,7 @@ def executa_gravador_streamin(URL_REQUEST):
             os.system('mv {}/*.mp3 {}'.format(diretorio_streams_completos, diretorio_musicas_baixadas))
             
             arquivos_estranhos = [arquivo for arquivo in os.listdir(diretorio_musicas_baixadas) 
-                                  if (' -  (' in arquivo and  ').mp3' in arquivo) ]
+                                  if (' -  (' in arquivo and  ').mp3' in arquivo)]
 
             for arquivo_estranho in arquivos_estranhos:
                 os.remove(os.path.join(diretorio_musicas_baixadas, arquivo_estranho))
