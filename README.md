@@ -30,3 +30,11 @@ If you want to, you can schedule a job on crontab
 # [ripping...    ] LED ZEPPELIN - ROCK AND ROLL [  3,34M]
 # [ripping...    ] THE ROLLING STONES - DON'T STOP [  3,60M]
 # [ripping...    ] RUMBORA - O MAPA DA MINA [  3,10M]
+
+
+![Screenshot from 2021-10-17 21-47-34](https://user-images.githubusercontent.com/18289389/137651473-f0faa2e3-8085-4ab9-b2ba-965406a3f9cb.png)
+
+
+![Screenshot from 2021-10-17 21-47-05](https://user-images.githubusercontent.com/18289389/137651475-c3ab2ba4-de1f-4a6c-8a73-69ddd30a9c4f.png)
+![Screenshot from 2021-10-17 21-43-51](https://user-images.githubusercontent.com/18289389/137651476-8c07df2e-a30b-44bc-a3b2-06a1d505f478.png)
+![Screenshot from 2021-10-17 21-41-08](https://user-images.githubusercontent.com/18289389/137651478-c2169a35-a9a8-46c7-8d28-fce8aa4c2ac4.png)
