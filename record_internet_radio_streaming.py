@@ -119,12 +119,19 @@ def agendar_execucao(url):
         horario_cadu = '06:00:00'
         maratona_rock_n_roll = '14:00:00'
         maratona_rock_n_roll_2 = '18:00:00'
+        diariamente_boas_musicas_1 = '21:00:00'
+        horario_esquenta = '22:00:00'
 
         schedule.every().sunday.at(maratona_rock_n_roll).do(executa_gravador_streamin(url, limite_horas=4))
         schedule.every().sunday.at(maratona_rock_n_roll_2).do(executa_gravador_streamin(url, limite_horas=3))
-        schedule.every().day.at(horario_cadu).do(executa_gravador_streamin(url, limite_horas=3))
-        schedule.every().day.at(horario_ramona_89).do(executa_gravador_streamin(url, limite_horas=3))
-        schedule.every().day.at(horario_dois_da_tarde).do(executa_gravador_streamin(url, limite_horas=5))
+
+        week = datetime.datetime.today().weekday()
+        if week < 6:
+            schedule.every().day.at(horario_cadu).do(executa_gravador_streamin(url, limite_horas=3))
+            schedule.every().day.at(horario_ramona_89).do(executa_gravador_streamin(url, limite_horas=3))
+            schedule.every().day.at(horario_dois_da_tarde).do(executa_gravador_streamin(url, limite_horas=5))
+            schedule.every().day.at(diariamente_boas_musicas_1).do(executa_gravador_streamin(url, limite_horas=3))
+
 
 if __name__ == "__main__":
 

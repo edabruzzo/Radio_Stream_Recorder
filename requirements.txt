@@ -2,3 +2,4 @@
 # https://stackoverflow.com/questions/48690984/portaudio-h-no-such-file-or-directory
 pyaudio
 requests
+schedule
