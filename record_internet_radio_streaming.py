@@ -127,6 +127,9 @@ def agendar_execucao(url):
 
         week = datetime.datetime.today().weekday()
         if week < 6:
+            '''
+            https://stackoverflow.com/questions/47086739/python-scheduling-a-job-starting-every-weekday-and-running-every-hour
+            '''
             schedule.every().day.at(horario_cadu).do(executa_gravador_streamin(url, limite_horas=3))
             schedule.every().day.at(horario_ramona_89).do(executa_gravador_streamin(url, limite_horas=3))
             schedule.every().day.at(horario_dois_da_tarde).do(executa_gravador_streamin(url, limite_horas=5))
