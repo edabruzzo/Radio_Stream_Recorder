@@ -19,7 +19,7 @@ from datetime import time
 import os.path
 import schedule
 
-def executa_gravador_streamin(URL_REQUEST, limite_horas=False):
+def executa_gravador_streaming(URL_REQUEST, limite_horas=False):
 
     agora = datetime.datetime.now()
     hora_formatada = agora.strftime('%d_%m_%Y_%H_hs_%M_min_%S_seg')
