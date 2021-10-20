@@ -150,7 +150,7 @@ if __name__ == "__main__":
     else:
         if HORARIO_LIVRE:
             print('Aguardando interrupção manual do programa')
-            executa_gravador_streamin(URL_REQUEST_89FM)
+            executa_gravador_streaming(URL_REQUEST_89FM)
         else:
             while True:
 
