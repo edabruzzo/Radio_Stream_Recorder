@@ -1,0 +1,9 @@
+Connecting...
+stream: Streamripper_rips
+server name: MediaGateway 5.6.1-0390.el6
+declared bitrate: 128
+meta interval: 16000
+
+[buffering - | ] BILLY IDOL - BITTER TASTE[skipping...   ] BILLY IDOL - BITTER TASTE [    1kb][skipping...   ] BILLY IDOL - BITTER TASTE [    1kb][skipping...   ] BILLY IDOL - BITTER TASTE [    1kb][skipping...   ] BILLY IDOL - BITTER TASTE [    1kb][skipping...   ] BILLY IDOL - BITTER TASTE [    1kb][skipping...   ] BILLY IDOL - BITTER TASTE [    1kb][skipping...   ] BILLY IDOL - BITTER TASTE [    1kb][skipping...   ] BILLY IDOL - BITTER TASTE [    1kb][skipping...   ] BILLY IDOL - BITTER TASTE [    1kb][skipping...   ] BILLY IDOL - BITTER TASTE [    1kb][skipping...   ] BILLY IDOL - BITTER TASTE [    1kb][skipping...   ] BILLY IDOL - BITTER TASTE [    1kb][skipping...   ] BILLY IDOL - BITTER TASTE [   17kb][skipping...   ] BILLY IDOL - BITTER TASTE [   32kb][skipping...   ] BILLY IDOL - BITTER TASTE [   48kb][skipping...   ] BILLY IDOL - BITTER TASTE [   64kb][skipping...   ] BILLY IDOL - BITTER TASTE [   79kb][skipping...   ] BILLY IDOL - BITTER TASTE [   95kb][skipping...   ] BILLY IDOL - BITTER TASTE [  110kb][skipping...   ] BILLY IDOL - BITTER TASTE [  126kb][skipping...   ] BILLY IDOL - BITTER TASTE [  142kb][skipping...   ] BILLY IDOL - BITTER TASTE [  157kb][skipping...   ] BILLY IDOL - BITTER TASTE [  173kb][skipping...   ] BILLY IDOL - BITTER TASTE [  189kb][skipping...   ] BILLY IDOL - BITTER TASTE [  204kb][skipping...   ] BILLY IDOL - BITTER TASTE [  220kb][skipping...   ] BILLY IDOL - BITTER TASTE [  235kb][skipping...   ] BILLY IDOL - BITTER TASTE [  251kb][skipping...   ] BILLY IDOL - BITTER TASTE [  267kb][skipping...   ] BILLY IDOL - BITTER TASTE [  282kb][skipping...   ] BILLY IDOL - BITTER TASTE [  298kb][skipping...   ] BILLY IDOL - BITTER TASTE [  314kb][skipping...   ] BILLY IDOL - BITTER TASTE [  329kb]
+shutting down
+bye..

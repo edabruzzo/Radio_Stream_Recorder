@@ -137,7 +137,15 @@ if __name__ == "__main__":
 
     LIMITAR_A_TARDES_DOMINGO, HORARIO_LIVRE, JOB = argumentos_linha_comando()
 
-    URL_REQUEST_89FM = 'https://21933.live.streamtheworld.com/RADIO_89FM_ADP.aac?dist=site-89fm'
+    '''
+    Atençaõ ! 
+    
+    A URL muda de tempos em tempos
+    
+    Necessário dar F12 na rádio online para descobrir a URL do streaming
+    https://www.radiorock.com.br/player/
+    '''
+    URL_REQUEST_89FM = 'https://24963.live.streamtheworld.com/RADIO_89FM_ADP.aac?dist=site-89fm'
 
     if JOB:
         agendar_execucao(URL_REQUEST_89FM)
