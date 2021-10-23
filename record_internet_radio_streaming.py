@@ -34,10 +34,13 @@ diretorio_musicas_baixadas = os.path.join(diretorio_projeto, 'musicas_baixadas')
 diretorio_relatorios = os.path.join(diretorio_projeto, 'relatorios')
 diretorio_streams_incompletos = os.path.join(diretorio_streams_completos, 'incomplete')
 
-
 tempo_espera_global=240 # Delay for 4 minutes (240 seconds).
+paralelizar = False
+
+
 
 def manipular_arquivos_audio(finalizacao=False):
+
     comando_ffmpeg = 'for f in *.aac; do ffmpeg -i "$f" -acodec libmp3lame -ab 256k "$f.mp3"; done'
     os.system("""cd {} && rm 89\ FM\ -\ SÃ£o\ Paulo*""".format(diretorio_streams_completos))
     os.system('cd {} && {}'.format(diretorio_streams_completos, comando_ffmpeg))
@@ -203,9 +206,14 @@ if __name__ == "__main__":
     else:
         if HORARIO_LIVRE:
             print('Aguardando interrupção manual do programa')
-            Multiprocessamento() \
-                .paralelizar_execucao_processo(converter_musicas_completas_por_tempo_espera())
-            executa_gravador_streaming(URL_REQUEST=URL_REQUEST_89FM)
+
+            if paralelizar:
+                Multiprocessamento().paralelizar_execucao_processo(converter_musicas_completas_por_tempo_espera())
+                Multiprocessamento().paralelizar_execucao_processo(executa_gravador_streaming,
+                                                                   {'URL_REQUEST': URL_REQUEST_89FM})
+
+            else:
+                executa_gravador_streaming(URL_REQUEST=URL_REQUEST_89FM)
 
 
         else:
@@ -224,9 +232,12 @@ if __name__ == "__main__":
 
                 if dentro_do_horario_limite:
 
-                    Multiprocessamento() \
-                        .paralelizar_execucao_processo(converter_musicas_completas_por_tempo_espera())
-                    executa_gravador_streaming(URL_REQUEST=URL_REQUEST_89FM)
+                    if paralelizar:
+                        Multiprocessamento().paralelizar_execucao_processo(converter_musicas_completas_por_tempo_espera())
+                        Multiprocessamento().paralelizar_execucao_processo(executa_gravador_streaming,{'URL_REQUEST':URL_REQUEST_89FM})
+
+                    else:
+                        executa_gravador_streaming(URL_REQUEST=URL_REQUEST_89FM)
 
                 else:
                     print('Fora do horário permitido para gravação de streaming')
