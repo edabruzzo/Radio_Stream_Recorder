@@ -1,0 +1,7 @@
+Connecting...
+stream: Streamripper_rips
+server name: 
+
+Time to stop is here, bailing
+shutting down
+

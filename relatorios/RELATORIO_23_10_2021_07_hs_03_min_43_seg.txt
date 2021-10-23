@@ -1,0 +1,10 @@
+Connecting...
+stream: Streamripper_rips
+server name: MediaGateway 5.6.2-0391.el6
+declared bitrate: 128
+meta interval: 16000
+
+[buffering - | ]  - [skipping...   ]  -  [    1kb][skipping...   ]  -  [    1kb][skipping...   ]  -  [    1kb][skipping...   ]  -  [    1kb][skipping...   ]  -  [    1kb][skipping...   ]  -  [    1kb][skipping...   ]  -  [    1kb][skipping...   ]  -  [    1kb][skipping...   ]  -  [    1kb][skipping...   ]  -  [    1kb][skipping...   ]  -  [    1kb][skipping...   ]  -  [    1kb][skipping...   ]  -  [   17kb][skipping...   ]  -  [   32kb][skipping...   ]  -  [   48kb][skipping...   ]  -  [   64kb][skipping...   ]  -  [   79kb][skipping...   ]  -  [   95kb][skipping...   ]  -  [  110kb][skipping...   ]  -  [  126kb][skipping...   ]  -  [  142kb][skipping...   ]  -  [  157kb][skipping...   ]  -  [  173kb][skipping...   ]  -  [  189kb][skipping...   ]  -  [  204kb][skipping...   ]  -  [  220kb][skipping...   ]  -  [  235kb][skipping...   ]  -  [  251kb][skipping...   ]  -  [  267kb][skipping...   ]  -  [  282kb][skipping...   ]  -  [  298kb][skipping...   ]  -  [  314kb][skipping...   ]  -  [  329kb][skipping...   ]  -  [  345kb][skipping...   ]  -  [  360kb][skipping...   ]  -  [  376kb]
+[skipping...   ] . - . [     0b][ripping...    ] . - . [    1kb]
+shutting down
+bye..
