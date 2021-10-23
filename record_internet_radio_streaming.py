@@ -15,16 +15,54 @@ https://docs.python.org/pt-br/3/library/datetime.html
 https://www.py4u.net/discuss/169119
 '''
 import datetime
+import sys
 from datetime import time
+import time as dormir
 import os.path
 import schedule
+from multiprocessing_parallelization.multiprocessamento import Multiprocessamento
 
-def executa_gravador_streaming(URL_REQUEST, limite_horas=False):
+diretorio_projeto = os.path.dirname(__file__)
+
+sys.path
+arquivo_multiprocessamento = os.path.join(diretorio_projeto, 'multiprocessing_parallelization/multiprocessamento.py')
+sys.path.append(arquivo_multiprocessamento)
+
+
+diretorio_streams_completos = os.path.join(diretorio_projeto, 'streams/Streamripper_rips')
+diretorio_musicas_baixadas = os.path.join(diretorio_projeto, 'musicas_baixadas')
+diretorio_relatorios = os.path.join(diretorio_projeto, 'relatorios')
+diretorio_streams_incompletos = os.path.join(diretorio_streams_completos, 'incomplete')
+
+
+tempo_espera_global=240 # Delay for 4 minutes (240 seconds).
+
+def manipular_arquivos_audio(finalizacao=False):
+    comando_ffmpeg = 'for f in *.aac; do ffmpeg -i "$f" -acodec libmp3lame -ab 256k "$f.mp3"; done'
+    os.system("""cd {} && rm 89\ FM\ -\ SÃ£o\ Paulo*""".format(diretorio_streams_completos))
+    os.system('cd {} && {}'.format(diretorio_streams_completos, comando_ffmpeg))
+    os.system('cd {} && rm *.aac && rm *.cue'.format(diretorio_streams_completos))
+    if finalizacao:
+        os.system('cd {} && rm *.aac && rm *.cue'.format(diretorio_streams_incompletos))
+    os.system('mv {}/*.mp3 {}'.format(diretorio_streams_completos, diretorio_musicas_baixadas))
+
+
+def converter_musicas_completas_por_tempo_espera(tempo_espera=tempo_espera_global):
+
+    while True:
+        print('Iniciando conversão da próxima música completa pelo tempo médio de 4 minutos')
+        manipular_arquivos_audio()
+        print('Aguardando próxima música completa pelo tempo médio de 4 minutos')
+        dormir.sleep(tempo_espera)
+
+
+
+def executa_gravador_streaming(URL_REQUEST, limite_horas=False, **kwargs):
 
     agora = datetime.datetime.now()
     hora_formatada = agora.strftime('%d_%m_%Y_%H_hs_%M_min_%S_seg')
 
-    diretorio_projeto = os.path.dirname(__file__)
+
     arquivo_mp3 = '{}/streams/Streamripper_rips/incomplete/PROGRAMACAO_LOCUTOR_COMERCIAIS_{}'\
                     .format(diretorio_projeto, hora_formatada)
 
@@ -43,10 +81,6 @@ def executa_gravador_streaming(URL_REQUEST, limite_horas=False):
 
     finally:
 
-        diretorio_streams_completos = os.path.join(diretorio_projeto, 'streams/Streamripper_rips')
-        diretorio_musicas_baixadas = os.path.join(diretorio_projeto, 'musicas_baixadas')
-        diretorio_relatorios = os.path.join(diretorio_projeto, 'relatorios')
-        diretorio_streams_incompletos = os.path.join(diretorio_streams_completos, 'incomplete')
         try:
 
             arquivos_ripped_repetidos = [arquivo_aac for arquivo_aac in os.listdir(diretorio_streams_completos)
@@ -55,13 +89,8 @@ def executa_gravador_streaming(URL_REQUEST, limite_horas=False):
             for arquivo in arquivos_ripped_repetidos:
                 os.remove(os.path.join(diretorio_streams_completos, arquivo))
 
-            comando_ffmpeg = 'for f in *.aac; do ffmpeg -i "$f" -acodec libmp3lame -ab 256k "$f.mp3"; done'
-            os.system("""cd {} && rm 89\ FM\ -\ SÃ£o\ Paulo*""".format(diretorio_streams_completos, comando_ffmpeg))
-            os.system('cd {} && {}'.format(diretorio_streams_completos, comando_ffmpeg))
-            os.system('cd {} && rm *.aac && rm *.cue'.format(diretorio_streams_completos))
-            os.system('cd {} && rm *.aac && rm *.cue'.format(diretorio_streams_incompletos))
-            os.system('mv {}/*.mp3 {}'.format(diretorio_streams_completos, diretorio_musicas_baixadas))
-            
+            manipular_arquivos_audio(finalizacao=True)
+
             arquivos_estranhos = [arquivo for arquivo in os.listdir(diretorio_musicas_baixadas) 
                                   if (' -  (' in arquivo and  ').mp3' in arquivo)
                                         or (' - .mp3' in arquivo)
@@ -174,7 +203,11 @@ if __name__ == "__main__":
     else:
         if HORARIO_LIVRE:
             print('Aguardando interrupção manual do programa')
-            executa_gravador_streaming(URL_REQUEST_89FM)
+            Multiprocessamento() \
+                .paralelizar_execucao_processo(converter_musicas_completas_por_tempo_espera())
+            executa_gravador_streaming(URL_REQUEST=URL_REQUEST_89FM)
+
+
         else:
             while True:
 
@@ -190,7 +223,11 @@ if __name__ == "__main__":
                                                 or (horario_do_rock_bola and hoje==1))
 
                 if dentro_do_horario_limite:
-                    executa_gravador_streamin(URL_REQUEST_89FM)
+
+                    Multiprocessamento() \
+                        .paralelizar_execucao_processo(converter_musicas_completas_por_tempo_espera())
+                    executa_gravador_streaming(URL_REQUEST=URL_REQUEST_89FM)
+
                 else:
                     print('Fora do horário permitido para gravação de streaming')
                     exit()
