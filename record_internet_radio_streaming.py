@@ -37,7 +37,9 @@ def executa_gravador_streaming(URL_REQUEST, limite_horas=False):
 
     except Exception as erro:
         print(erro)
-        os.system('sudo apt-get install streamripper')
+        exit()
+        #os.system('sudo apt-get install streamripper')
+
 
     finally:
 
@@ -62,6 +64,7 @@ def executa_gravador_streaming(URL_REQUEST, limite_horas=False):
             
             arquivos_estranhos = [arquivo for arquivo in os.listdir(diretorio_musicas_baixadas) 
                                   if (' -  (' in arquivo and  ').mp3' in arquivo)
+                                        or (' - .mp3' in arquivo)
                                       or (('89 FM - S') in arquivo)]
 
             for arquivo_estranho in arquivos_estranhos:
@@ -69,6 +72,7 @@ def executa_gravador_streaming(URL_REQUEST, limite_horas=False):
 
         except Exception as erro:
             print(erro)
+
 
         os.system('mv {}/RELATORIO_* {}'.format(diretorio_streams_incompletos, diretorio_relatorios))
 
@@ -144,8 +148,20 @@ if __name__ == "__main__":
     
     Necessário dar F12 na rádio online para descobrir a URL do streaming
     https://www.radiorock.com.br/player/
+    
+    https://21933.live.streamtheworld.com/RADIO_89FM_ADP.aac?dist=site-89fm
+    'https://24963.live.streamtheworld.com/RADIO_89FM_ADP.aac?dist=site-89fm'
+    https://20833.live.streamtheworld.com/RADIO_89FM_ADP.aac?dist=site-89fm
+    'https://playerservices.streamtheworld.com/api/livestream-redirect/RADIO_89FM_ADP.aac?dist=site-89fm'
+
+    ERRO
+    Time to stop is here, bailing
+    shutting down
+    
+    
     '''
-    URL_REQUEST_89FM = 'https://24963.live.streamtheworld.com/RADIO_89FM_ADP.aac?dist=site-89fm'
+    URL_REQUEST_89FM = 'https://21933.live.streamtheworld.com/RADIO_89FM_ADP.aac?dist=site-89fm' \
+
 
     if JOB:
         agendar_execucao(URL_REQUEST_89FM)
