@@ -88,7 +88,7 @@ def executa_gravador_streaming(URL_REQUEST, tempo_limite_segundos=14400, **kwarg
 
         print(f'Esta gravação terminará em {horas_restantes}')
         print(f'Esta gravação terminará às {hora_exata_termino.strftime("%H:%M")}')
-        print('A menos que a gravação de strems seja interrompida')
+        print('A menos que a gravação de stremas seja interrompida')
 
     comando_streamripper = 'streamripper {} -d {}/streams {} -a {}'.format(URL_REQUEST, diretorio_projeto, timeout, arquivo_mp3)
 
