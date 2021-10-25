@@ -188,7 +188,24 @@ def agendar_execucao(url):
             schedule.every().day.at(diariamente_boas_musicas_1).do(executa_gravador_streamin(url, limite_horas=3))
 
 
+
 if __name__ == "__main__":
+
+    import time as t
+
+    def contagem_regressiva():
+        '''
+        https://www.journaldev.com/15797/python-time-sleep
+
+        '''
+
+        startTime = t.time()
+        for i in range(0, 300):
+            print(f'Faltam {300-i} segundos para nova tentativa')
+        endTime = t.time()
+        elapsedTime = endTime - startTime
+        print("Elapsed Time = %s" % elapsedTime)
+
 
     LIMITAR_A_TARDES_DOMINGO, HORARIO_LIVRE, JOB = argumentos_linha_comando()
 
@@ -259,7 +276,8 @@ if __name__ == "__main__":
 
                 else:
                     print('Fora do horário permitido para gravação de streaming')
-                    import time as t
+                    print('Aguardando 5 minutos para nova tentativa ....')
+                    #Multiprocessamento().paralelizar_execucao_processo(contagem_regressiva)
                     t.sleep(300) # 5 minutos
                     os.system(f'{diretorio_projeto}/venv/bin/python {__file__}')
 
