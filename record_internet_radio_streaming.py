@@ -193,15 +193,16 @@ if __name__ == "__main__":
 
     import time as t
 
-    def contagem_regressiva():
+    def contagem_regressiva(tempo_espera=300):
         '''
         https://www.journaldev.com/15797/python-time-sleep
 
         '''
 
         startTime = t.time()
-        for i in range(0, 300):
-            print(f'Faltam {300-i} segundos para nova tentativa')
+        for i in range(0, tempo_espera):
+            print(f'Faltam {tempo_espera-i} segundos para nova tentativa')
+            t.sleep(1)
         endTime = t.time()
         elapsedTime = endTime - startTime
         print("Elapsed Time = %s" % elapsedTime)
@@ -278,7 +279,7 @@ if __name__ == "__main__":
                     print('Fora do horário permitido para gravação de streaming')
                     print('Aguardando 5 minutos para nova tentativa ....')
                     #Multiprocessamento().paralelizar_execucao_processo(contagem_regressiva)
-                    t.sleep(300) # 5 minutos
+                    contagem_regressiva() # 5 minutos
                     os.system(f'{diretorio_projeto}/venv/bin/python {__file__}')
 
 
