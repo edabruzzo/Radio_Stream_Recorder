@@ -125,9 +125,7 @@ def executa_gravador_streaming(URL_REQUEST, tempo_limite_segundos=14400, **kwarg
         except Exception as erro:
             print(erro)
 
-
         os.system('mv {}/RELATORIO_* {}'.format(diretorio_streams_incompletos, diretorio_relatorios))
-
         os.system(f'{diretorio_projeto}/venv/bin/python {__file__}')
 
 def esta_dentro_do_horario_limite(begin_time, end_time, check_time=None):
@@ -261,6 +259,8 @@ if __name__ == "__main__":
 
                 else:
                     print('Fora do horário permitido para gravação de streaming')
-                    exit()
+                    import time as t
+                    t.sleep(300) # 5 minutos
+                    os.system(f'{diretorio_projeto}/venv/bin/python {__file__}')
 
 
