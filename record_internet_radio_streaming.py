@@ -13,6 +13,11 @@ https://stackoverflow.com/questions/10048249/how-do-i-determine-if-current-time-
 https://docs.python.org/pt-br/3/library/datetime.html
 
 https://www.py4u.net/discuss/169119
+
+
+http://streamripper.sourceforge.net/tutorialconsole.php
+http://streamripper.sourceforge.net/
+
 '''
 import datetime
 import sys
@@ -60,8 +65,13 @@ def converter_musicas_completas_por_tempo_espera(tempo_espera=tempo_espera_globa
 
 
 
-def executa_gravador_streaming(URL_REQUEST, limite_horas=False, **kwargs):
+def executa_gravador_streaming(URL_REQUEST, tempo_limite_segundos=14400, **kwargs):
+    '''
 
+    tempo_limite_segundos=14400
+    Gravação por 4 horas = 4 h x 60 min x 60 seg = 14400 segundos
+
+    '''
     agora = datetime.datetime.now()
     hora_formatada = agora.strftime('%d_%m_%Y_%H_hs_%M_min_%S_seg')
 
@@ -70,7 +80,17 @@ def executa_gravador_streaming(URL_REQUEST, limite_horas=False, **kwargs):
                     .format(diretorio_projeto, hora_formatada)
 
     comando_curl = 'curl -sS -o {} –max-time 1800 {}'.format(arquivo_mp3, URL_REQUEST)
-    comando_streamripper = 'streamripper {} -d {}/streams -l 10800 -a {}'.format(URL_REQUEST, diretorio_projeto, arquivo_mp3)
+    if tempo_limite_segundos is not None:
+        timeout = f'-l {tempo_limite_segundos}'
+        horas_restantes = (tempo_limite_segundos / 60)/60
+        hora_exata_termino = datetime.datetime.now() + datetime.timedelta(hours=horas_restantes)
+
+
+        print(f'Esta gravação terminará em {horas_restantes}')
+        print(f'Esta gravação terminará às {hora_exata_termino.strftime("%H:%M")}')
+        print('A menos que a gravação de strems seja interrompida')
+
+    comando_streamripper = 'streamripper {} -d {}/streams {} -a {}'.format(URL_REQUEST, diretorio_projeto, timeout, arquivo_mp3)
 
     try:
         RELATORIO = '{}/streams/Streamripper_rips/incomplete/RELATORIO_{}.txt'.format(diretorio_projeto, hora_formatada)
@@ -108,6 +128,7 @@ def executa_gravador_streaming(URL_REQUEST, limite_horas=False, **kwargs):
 
         os.system('mv {}/RELATORIO_* {}'.format(diretorio_streams_incompletos, diretorio_relatorios))
 
+        os.system(f'{diretorio_projeto}/venv/bin/python {__file__}')
 
 def esta_dentro_do_horario_limite(begin_time, end_time, check_time=None):
     check_time = check_time or datetime.datetime.now().time()
@@ -208,13 +229,12 @@ if __name__ == "__main__":
             print('Aguardando interrupção manual do programa')
 
             if paralelizar:
-                Multiprocessamento().paralelizar_execucao_processo(converter_musicas_completas_por_tempo_espera())
+                Multiprocessamento().paralelizar_execucao_processo(converter_musicas_completas_por_tempo_espera)
                 Multiprocessamento().paralelizar_execucao_processo(executa_gravador_streaming,
                                                                    {'URL_REQUEST': URL_REQUEST_89FM})
 
             else:
                 executa_gravador_streaming(URL_REQUEST=URL_REQUEST_89FM)
-
 
         else:
             while True:
@@ -233,7 +253,7 @@ if __name__ == "__main__":
                 if dentro_do_horario_limite:
 
                     if paralelizar:
-                        Multiprocessamento().paralelizar_execucao_processo(converter_musicas_completas_por_tempo_espera())
+                        Multiprocessamento().paralelizar_execucao_processo(converter_musicas_completas_por_tempo_espera)
                         Multiprocessamento().paralelizar_execucao_processo(executa_gravador_streaming,{'URL_REQUEST':URL_REQUEST_89FM})
 
                     else:
